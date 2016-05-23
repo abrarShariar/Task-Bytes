@@ -1,0 +1,28 @@
+<ion-navbar *navbar dark>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Task Bytes</ion-title>
+</ion-navbar>
+
+<ion-content padding>
+    <div style="text-align:center;color: #2196F3;">
+        <h1>Task Bytes</h1>
+        <h3>Let's Kill Some Tasks Today !!</h3>
+        <ion-grid>
+            <ion-row>
+                <ion-col width-50>
+                <button dark round>Recently Added</button>
+                </ion-col>
+                <ion-col width-50>
+                  <button dark round>Upcoming</button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+    </div>
+    <button fab fab-bottom fab-right  (click)="addTask()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+
+</ion-content>

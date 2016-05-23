@@ -1,0 +1,35 @@
+<ion-navbar *navbar dark>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>New Task</ion-title>
+</ion-navbar>
+
+<ion-content>
+
+    <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Title</ion-label>
+                <ion-input type="text" required [(ngModel)]="taskTitle"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Comment</ion-label>
+                <ion-input type="text" [(ngModel)]="taskComment"></ion-input>
+            </ion-item>
+            <br>
+            <ion-item>
+                <ion-label>Date</ion-label>
+                <ion-input type="date" value="{{currentDate}}" [(ngModel)]="taskDate"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Time</ion-label>
+                <ion-input type="time" [(ngModel)]="taskTime"></ion-input>
+            </ion-item>
+
+
+        </ion-list>
+        <button block type="submit" padding>Add Task</button>
+    </form>
+
+</ion-content>

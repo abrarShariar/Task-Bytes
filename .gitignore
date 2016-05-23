@@ -1,0 +1,11 @@
+
+
+node_modules/
+www/
+typings/
+resources/
+platforms/
+plugins/
+*.swp
+.DS_Store
+Thumbs.db
