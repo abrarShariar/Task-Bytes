@@ -1,10 +1,9 @@
 import {ViewChild,OnInit} from '@angular/core';
-import {App, Platform, MenuController, Nav} from 'ionic-angular';
+import {App, Platform, MenuController, Nav,SqlStorage,Storage} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 //components
 import {HomePage} from './pages/home/home.page';
-import {ListPage} from './pages/list/list';
-import {TaskPage} from './pages/tasks/task';
+import {AllTaskPage} from './pages/all-tasks/all-task.page';
 //data service
 import {DataService} from './pages/service/data.service';
 
@@ -29,22 +28,9 @@ class MyApp {
   rootPage: any = HomePage;
   pages:MyPages[]=[];
   data:any[]=[];
+  storage;
 
-  ngOnInit(){
-    // this.dataService.clearData().then((tasks)=>{
-    //   this.zone.run(()=>{
-    //     this.data=JSON.parse(tasks);
-    //     console.log(tasks);
-    //   });
-    // });
-    // this.dataService.showAll().then((data)=>{
-    //   console.log(data);
-    // });
 
-    this.dataService.getData("ng2").then((tasks)=>{
-        console.log(tasks);
-    });
-  }
   constructor(
     private platform: Platform,
     private menu: MenuController,
@@ -56,16 +42,18 @@ class MyApp {
     // set our app's pages
     this.pages = [
       {title: 'Home', component: HomePage },
-      {title: 'My Tasks',component: TaskPage},
-      {title: 'My First List', component: ListPage},
+      {title: 'My Tasks',component: AllTaskPage},
     ];
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      this.storage=new Storage(SqlStorage);
+      this.storage.query('CREATE TABLE IF NOT EXISTS myTasks (id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT,comment TEXT,date TEXT,time TEXT)').then((data)=>{
+          console.log(data);
+        },(error)=>{
+          console.log("Error->"+JSON.stringify(error.err));
+        });
       StatusBar.styleDefault();
     });
   }

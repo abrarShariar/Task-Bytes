@@ -1,7 +1,5 @@
-import {Page,Toast,NavController} from 'ionic-angular';
+import {Page,Toast,NavController,Storage,SqlStorage,Platform} from 'ionic-angular';
 import {NgForm} from '@angular/Common';
-//service
-import {DataService} from '../service/data.service';
 //ngZone
 import {NgZone,OnInit} from '@angular/core';
 //date picker
@@ -9,18 +7,16 @@ import {Task} from '../service/Task';
 
 
 @Page({
-    templateUrl:'build/pages/add-task/add-task.html',
-    providers:[DataService,Task]
+    templateUrl:'build/pages/add-task/add-task.html'
 })
 export class AddTaskPage{
 
-    items:Task[]=[];
     taskTitle:string="";
     taskComment:string="";
     taskDate;
     taskTime;
     currentDate;
-
+    storage;
     ngOnInit(){
       var time=new Date();
       var day=time.getUTCDate();
@@ -40,28 +36,24 @@ export class AddTaskPage{
 
     }
 
-    constructor(private myTask:Task,private nav:NavController,private zone:NgZone,private dataService:DataService){
+    constructor(private nav:NavController,private platform:Platform){
+      this.platform.ready().then(()=>{
+        this.storage=new Storage(SqlStorage);
+      });
+    }
 
-        // this.dataService.getData().then((tasks)=>{
-        //   if(tasks){
-        //     this.zone.run(()=>{
-        //       this.items=JSON.parse(tasks);
-        //     });
-        //   }
-        // });
-    }
-    saveItem(item){
-      console.log(item);
-      this.dataService.save(this.taskTitle,item);
-    }
+    //INSERT data
     onSubmit(){
-      this.myTask.title=this.taskTitle;
-      this.myTask.comment=this.taskComment;
-      this.myTask.date=this.taskDate;
-      this.myTask.time=this.taskTime;
-      // console.log(this.myTask);
-      this.saveItem(this.myTask);
+      this.platform.ready().then(()=>{
+          this.storage.query("INSERT INTO myTasks (title,comment,date,time) VALUES("+"'"+this.taskTitle+"'"+","+"'"+this.taskComment+"','"+this.taskDate+"','"+this.taskTime+"'"+")").then((data)=>{
+            console.log(data);    //debug only
+          },(error)=>{
+              console.log("error->"+JSON.stringify(error.err));
+          });
+      });
+      this.presentToast();
     }
+
     //show data on toast
     presentToast(){
       let toast=Toast.create({

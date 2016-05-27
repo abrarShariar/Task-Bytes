@@ -1,33 +1,22 @@
-import {Storage,SqlStorage} from 'ionic-angular';
-import {Task} from './Task';
+/*
+  This service handles all the SqlStorage related work
+*/
 import {Injectable} from '@angular/core';
+import {Platform,Storage,SqlStorage} from 'ionic-angular';
 
 @Injectable()
 export class DataService{
+
   storage;
-  data;
-  constructor(){
-    this.storage=new Storage(SqlStorage,{name:'taskDB'});
-    this.data=null;
+
+  constructor(private platform:Platform){
+    this.platform.ready().then(()=>{
+        this.storage=new Storage(SqlStorage);
+    });
   }
 
-
-  getData(key:string){
-    return this.storage.get(key);
+  //get all tasks [SELECT]
+  selectAllTasks():Promise<any>{
+    return this.storage.query("SELECT * FROM myTasks ORDER BY id DESC");
   }
-
-  clearData(){
-    return this.storage.remove("tasks");
-  }
-
-  // showAll(){
-  //   return this.storage.query("DESC taskDB");
-  // }
-
-  save(title,data){
-    let newData=JSON.stringify(data);
-    console.log(title);
-    this.storage.set(title,newData);
-  }
-
 }
