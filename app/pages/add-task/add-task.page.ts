@@ -4,6 +4,8 @@ import {NgForm} from '@angular/Common';
 import {NgZone,OnInit} from '@angular/core';
 //date picker
 import {Task} from '../service/Task';
+//All tasks page
+import {AllTaskPage} from '../all-tasks/all-task.page';
 
 
 @Page({
@@ -63,5 +65,8 @@ export class AddTaskPage{
         closeButtonText:"OK"
       });
       this.nav.present(toast);
+
+      //redirect to all tasks
+      this.nav.push(AllTaskPage);
     }
 }

@@ -19,4 +19,14 @@ export class DataService{
   selectAllTasks():Promise<any>{
     return this.storage.query("SELECT * FROM myTasks ORDER BY id DESC");
   }
+
+  //delete specific task (on click remove)
+  deleteTask(taskTitle){
+    this.storage.query("DELETE FROM myTasks WHERE title='"+taskTitle+"'").then((data)=>{
+        //console.log(data);
+    },(error)=>{
+      console.log("error->"+JSON.stringify(error.err));
+    });
+  }
+
 }

@@ -29,8 +29,7 @@ class MyApp {
   pages:MyPages[]=[];
   data:any[]=[];
   storage;
-
-
+  
   constructor(
     private platform: Platform,
     private menu: MenuController,

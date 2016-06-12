@@ -6,12 +6,18 @@
 </ion-navbar>
 
 <ion-content *ngIf="allTasks">
+    <h1 padding>All Tasks</h1>
+    <button clear (click)="updateTasks()" padding>Update</button>
+    <button danger clear padding>Remove All</button>
+
     <ion-card *ngFor="let item of allTasks" style="margin-bottom: 10%;">
         <ion-card-header style="background-color:rgba(33, 150, 243, 0.85);">
-            {{item.title}}
+          <h1>{{item.title}}</h1>
+          <br>
+          <p style="color:white;">{{item.comment}}</p>
         </ion-card-header>
+
         <ion-card-content>
-            <em style="color: #9E9E9E;">{{item.comment}}</em>
             <br>
             <br>
             <span><ion-icon name="calendar" style="margin-right: 3%;"></ion-icon>{{item.date}}</span>
@@ -19,12 +25,12 @@
             <span><ion-icon style="margin-right: 3%;" name="alarm"></ion-icon>{{item.time}}</span>
         </ion-card-content>
         <ion-item padding>
-            <ion-label style="color:#8BC34A;">Done</ion-label>
-            <ion-checkbox dark checked="false"></ion-checkbox>
+            <ion-label style="color:#8BC34A;" >Done</ion-label>
+            <ion-checkbox dark checked="false" (click)="taskDone(item)"></ion-checkbox>
         </ion-item>
         <ion-item padding>
             <ion-label style="color: #F44336;">Remove</ion-label>
-            <ion-checkbox dark checked="false"></ion-checkbox>
+            <ion-checkbox dark checked="false" (click)="removeTask(item)"></ion-checkbox>
         </ion-item>
 
 
