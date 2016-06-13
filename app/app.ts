@@ -1,9 +1,11 @@
 import {ViewChild,OnInit} from '@angular/core';
 import {App, Platform, MenuController, Nav,SqlStorage,Storage} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-//components
+//components/pages
 import {HomePage} from './pages/home/home.page';
 import {AllTaskPage} from './pages/all-tasks/all-task.page';
+import {AddTaskPage} from './pages/add-task/add-task.page';
+import {CompletedTasksPage} from './pages/completed-tasks/completed-tasks.page';
 //data service
 import {DataService} from './pages/service/data.service';
 
@@ -29,7 +31,7 @@ class MyApp {
   pages:MyPages[]=[];
   data:any[]=[];
   storage;
-  
+
   constructor(
     private platform: Platform,
     private menu: MenuController,
@@ -41,7 +43,9 @@ class MyApp {
     // set our app's pages
     this.pages = [
       {title: 'Home', component: HomePage },
+      {title:'New Task',component: AddTaskPage},
       {title: 'My Tasks',component: AllTaskPage},
+      {title: 'Completed Tasks', component: CompletedTasksPage}
     ];
   }
 
@@ -49,7 +53,7 @@ class MyApp {
     this.platform.ready().then(() => {
       this.storage=new Storage(SqlStorage);
       this.storage.query('CREATE TABLE IF NOT EXISTS myTasks (id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT,comment TEXT,date TEXT,time TEXT)').then((data)=>{
-          console.log(data);
+          //console.log(data);
         },(error)=>{
           console.log("Error->"+JSON.stringify(error.err));
         });

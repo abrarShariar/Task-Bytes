@@ -25,6 +25,7 @@ export class AllTaskPage implements OnInit{
 
   ngOnInit(){
     this.showAllTasks();
+    this.dataService.createCompletedTable();
 
   }
 
@@ -49,18 +50,27 @@ export class AllTaskPage implements OnInit{
 
   //on done click
   taskDone(item:Task){
-
+    item.done=true;
+    this.dataService.insertCompletedTask(item);
+    this.dataService.deleteTask(item.title);
   }
 
   //on remove click
   removeTask(item:Task){
       //local remove
+      item.remove=true;
       this.dataService.deleteTask(item.title);
   }
 
   //on update click
   updateTasks(){
     this.nav.push(AllTaskPage);
+  }
+
+  //on click remove all
+  removeAllTasks(){
+    this.dataService.deleteAllTasks();
+    this.updateTasks();
   }
 
 

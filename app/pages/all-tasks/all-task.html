@@ -8,13 +8,33 @@
 <ion-content *ngIf="allTasks">
     <h1 padding>All Tasks</h1>
     <button clear (click)="updateTasks()" padding>Update</button>
-    <button danger clear padding>Remove All</button>
+    <button danger clear padding (click)="removeAllTasks()">Remove All</button>
 
     <ion-card *ngFor="let item of allTasks" style="margin-bottom: 10%;">
-        <ion-card-header style="background-color:rgba(33, 150, 243, 0.85);">
-          <h1>{{item.title}}</h1>
-          <br>
-          <p style="color:white;">{{item.comment}}</p>
+        <!--if not done -->
+        <ion-card-header *ngIf="!item.done && !item.remove" style="background-color:rgba(33, 150, 243, 0.85);">
+            <h1>
+               {{item.title}}
+             </h1>
+            <br>
+            <p style="color:white;">{{item.comment}}</p>
+        </ion-card-header>
+        <!-- if done -->
+        <ion-card-header *ngIf="item.done && !item.remove" style="background-color: rgba(139, 195, 74, 0.54);">
+            <h1>
+               <ion-icon  ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>
+               {{item.title}}
+             </h1>
+            <br>
+            <p style="color:white;">{{item.comment}}</p>
+        </ion-card-header>
+        <!-- if remove -->
+        <ion-card-header *ngIf="item.remove" style="background-color: rgba(244, 67, 54, 0.66)">
+            <h1>
+              {{item.title}}
+          </h1>
+            <br>
+            <p style="color:white;">{{item.comment}}</p>
         </ion-card-header>
 
         <ion-card-content>
@@ -25,7 +45,7 @@
             <span><ion-icon style="margin-right: 3%;" name="alarm"></ion-icon>{{item.time}}</span>
         </ion-card-content>
         <ion-item padding>
-            <ion-label style="color:#8BC34A;" >Done</ion-label>
+            <ion-label style="color:#8BC34A;">Done</ion-label>
             <ion-checkbox dark checked="false" (click)="taskDone(item)"></ion-checkbox>
         </ion-item>
         <ion-item padding>
