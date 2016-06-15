@@ -1,6 +1,12 @@
-# ng2-ionic-bytes
-[Under Development]
+# Task-Bytes
+A simple task manager built for android using Ionic v.2
 
-  > Ionic 2 <br>
-  > Angular 2 <br>
-  > Cordova SQLite plugin <br>
+## Preview
+
+![](https://raw.githubusercontent.com/abrarShariar/Task-Bytes/master/screen-1.PNG)
+
+![](https://raw.githubusercontent.com/abrarShariar/Task-Bytes/master/screen-2.PNG)
+
+![](https://raw.githubusercontent.com/abrarShariar/Task-Bytes/master/screen-3.PNG)
+
+**TypeScript <3**
