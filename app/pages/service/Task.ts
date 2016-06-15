@@ -6,4 +6,5 @@ export class Task{
   time:any;
   done:boolean=false;
   remove:boolean;
+  tag:any;
 }

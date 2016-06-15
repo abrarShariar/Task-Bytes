@@ -2,11 +2,11 @@
     <button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>My Tasks</ion-title>
+    <ion-title>All Tasks</ion-title>
 </ion-navbar>
 
 <ion-content *ngIf="allTasks">
-    <h1 padding>All Tasks</h1>
+  <br>
     <button clear (click)="updateTasks()" padding>Update</button>
     <button danger clear padding (click)="removeAllTasks()">Remove All</button>
 
@@ -39,10 +39,12 @@
 
         <ion-card-content>
             <br>
-            <br>
+            <span style="float:right"><ion-badge item-right>{{item.tag}}</ion-badge></span>
+
             <span><ion-icon name="calendar" style="margin-right: 3%;"></ion-icon>{{item.date}}</span>
             <br>
             <span><ion-icon style="margin-right: 3%;" name="alarm"></ion-icon>{{item.time}}</span>
+
         </ion-card-content>
         <ion-item padding>
             <ion-label style="color:#8BC34A;">Done</ion-label>

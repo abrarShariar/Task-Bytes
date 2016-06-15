@@ -1,0 +1,23 @@
+<ion-navbar *navbar dark>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Completed Tasks</ion-title>
+</ion-navbar>
+
+
+<ion-content padding *ngIf="completeTask">
+    <br>
+    <br>
+    <button clear (click)="clearAll()" padding>Clear All</button>
+
+    <ion-card *ngFor="let item of completeTask" style="margin-bottom: 5%;">
+        <ion-card-header>
+            {{item.title}}
+        </ion-card-header>
+        <ion-card-content>
+          Deadline: {{item.date}}
+        </ion-card-content>
+    </ion-card>
+    <br>
+</ion-content>

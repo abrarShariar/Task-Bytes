@@ -17,6 +17,7 @@ export class AddTaskPage{
     taskComment:string="";
     taskDate;
     taskTime;
+    taskTag;
     currentDate;
     storage;
     ngOnInit(){
@@ -35,7 +36,6 @@ export class AddTaskPage{
       }
       // console.log(this.currentDate);
       this.taskDate=this.currentDate;
-
     }
 
     constructor(private nav:NavController,private platform:Platform){
@@ -47,7 +47,7 @@ export class AddTaskPage{
     //INSERT data
     onSubmit(){
       this.platform.ready().then(()=>{
-          this.storage.query("INSERT INTO myTasks (title,comment,date,time) VALUES("+"'"+this.taskTitle+"'"+","+"'"+this.taskComment+"','"+this.taskDate+"','"+this.taskTime+"'"+")").then((data)=>{
+          this.storage.query("INSERT INTO myTasks (title,comment,date,time,tag) VALUES("+"'"+this.taskTitle+"'"+","+"'"+this.taskComment+"','"+this.taskDate+"','"+this.taskTime+"','"+this.taskTag+"')").then((data)=>{
             console.log(data);    //debug only
           },(error)=>{
               console.log("error->"+JSON.stringify(error.err));
@@ -68,5 +68,12 @@ export class AddTaskPage{
 
       //redirect to all tasks
       this.nav.push(AllTaskPage);
+    }
+
+    //Drop table myTasks [test only]
+    dropMyTasks(){
+      this.storage.query("DROP TABLE myTasks").then((data)=>{
+        console.log(data);
+      });
     }
 }

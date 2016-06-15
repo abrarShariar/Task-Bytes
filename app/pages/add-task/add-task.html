@@ -6,6 +6,7 @@
 </ion-navbar>
 
 <ion-content>
+  <!-- <button (click)="dropMyTasks()">Kill</button> -->
 
     <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
         <ion-list>
@@ -26,8 +27,17 @@
                 <ion-label>Time</ion-label>
                 <ion-input type="time" [(ngModel)]="taskTime"></ion-input>
             </ion-item>
-
-
+            <ion-item>
+                <ion-label>Tag</ion-label>
+                <ion-select [(ngModel)]="taskTag">
+                    <ion-option value="study">Study</ion-option>
+                    <ion-option value="work">Work</ion-option>
+                    <ion-option value="family">Family</ion-option>
+                    <ion-option value="friends">Friends</ion-option>
+                    <ion-option value="food">Food</ion-option>
+                    <ion-option value="play">Play</ion-option>
+              </ion-select>
+            </ion-item>
         </ion-list>
         <button block type="submit" padding>Add Task</button>
 

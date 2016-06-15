@@ -33,7 +33,7 @@ export class DataService {
     //delete all tasks [DELETE]
     deleteAllTasks() {
         this.storage.query("DELETE FROM myTasks").then((data) =>{
-          console.log(data);  //debug only
+          //console.log(data);  //debug only
         },(error) => {
             console.log("error->" + JSON.stringify(error.err));
         });
@@ -41,7 +41,7 @@ export class DataService {
 
     //create table for completed tasks [CREATE]
     createCompletedTable(){
-      this.storage.query('CREATE TABLE IF NOT EXISTS completedTasks (title TEXT,date TEXT)').then((data)=>{
+      this.storage.query('CREATE TABLE IF NOT EXISTS completedTasks (id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT,date TEXT)').then((data)=>{
           //console.log(data);
         },(error)=>{
           console.log("Error->"+JSON.stringify(error.err));
@@ -57,11 +57,29 @@ export class DataService {
     }
 
     //get all completed tasks
-    getCompletedTasks(){
-      this.storage.query("SELECT * FROM completedTasks").then((data)=>{
-        console.log(data);
+    selectCompletedTasks():Promise<any>{
+     return this.storage.query("SELECT * FROM completedTasks ORDER BY id DESC");
+    }
+    //get recently added task
+    getRecentlyAddedTask(): Promise<any>{
+      return this.storage.query("SELECT * FROM myTasks ORDER BY id DESC");
+    }
+
+    //delete all tasks in completed tasks [DELETE]
+    deleteCompletedTasks(){
+      this.storage.query("DELETE FROM completedTasks").then((data)=>{
+          console.log(data);
       },(error)=>{
-        console.log("error->"+JSON.stringify(error.err));
+        //console.log("ERROR");   //debug only
       });
     }
+
+    //for testing purpose
+    dropCompletedTable(){
+      this.storage.query("DROP TABLE completedTasks").then((data)=>{
+        console.log(data);
+      });
+    }
+
+
 }

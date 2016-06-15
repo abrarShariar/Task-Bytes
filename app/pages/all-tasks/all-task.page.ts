@@ -16,11 +16,6 @@ export class AllTaskPage implements OnInit{
   storage;
 
   constructor(private nav:NavController,private dataService:DataService,private platform:Platform){
-/*
-    this.platform.ready().then(()=>{
-        this.storage=new Storage(SqlStorage);
-    });
-    */
   }
 
   ngOnInit(){
@@ -40,6 +35,7 @@ export class AllTaskPage implements OnInit{
               myTask.comment=data.res.rows.item(i).comment;
               myTask.date=data.res.rows.item(i).date;
               myTask.time=data.res.rows.item(i).time;
+              myTask.tag=data.res.rows.item(i).tag;
               this.allTasks.push(myTask);
               //console.log(myTask);  //debug only
             }
@@ -72,6 +68,4 @@ export class AllTaskPage implements OnInit{
     this.dataService.deleteAllTasks();
     this.updateTasks();
   }
-
-
 }

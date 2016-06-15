@@ -43,16 +43,16 @@ class MyApp {
     // set our app's pages
     this.pages = [
       {title: 'Home', component: HomePage },
-      {title:'New Task',component: AddTaskPage},
-      {title: 'My Tasks',component: AllTaskPage},
-      {title: 'Completed Tasks', component: CompletedTasksPage}
+      {title:'New',component: AddTaskPage},
+      {title: 'All',component: AllTaskPage},
+      {title: 'Completed', component: CompletedTasksPage}
     ];
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.storage=new Storage(SqlStorage);
-      this.storage.query('CREATE TABLE IF NOT EXISTS myTasks (id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT,comment TEXT,date TEXT,time TEXT)').then((data)=>{
+      this.storage.query('CREATE TABLE IF NOT EXISTS myTasks (id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT,comment TEXT,date TEXT,time TEXT,tag TEXT)').then((data)=>{
           //console.log(data);
         },(error)=>{
           console.log("Error->"+JSON.stringify(error.err));

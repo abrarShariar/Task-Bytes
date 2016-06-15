@@ -8,21 +8,43 @@
 <ion-content padding>
     <div style="text-align:center;color: #2196F3;">
         <h1>Task Bytes</h1>
-        <h3>Let's Kill Some Tasks Today !!</h3>
-        <ion-grid>
-            <ion-row>
-                <ion-col width-50>
-                <button dark round>Recently Added</button>
-                </ion-col>
-                <ion-col width-50>
-                  <button dark round>Upcoming</button>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
+        <br>
+        <br>
+        <br>
 
+        <ion-list>
+          <p>
+            <ion-badge item-left>Study</ion-badge>
+            <ion-badge item-left>{{studyCount}}</ion-badge>
+
+          </p>
+          <p>
+            <ion-badge item-right>Work</ion-badge>
+            <ion-badge item-right>{{workCount}}</ion-badge>
+
+          </p>
+          <p>
+            <ion-badge item-right>Family</ion-badge>
+            <ion-badge item-right>{{familyCount}}</ion-badge>
+          </p>
+
+          <p>
+            <ion-badge item-right>Friends</ion-badge>
+            <ion-badge item-right>{{friendsCount}}</ion-badge>
+          </p>
+          <p>
+            <ion-badge item-right>Food</ion-badge>
+            <ion-badge item-right>{{foodCount}}</ion-badge>
+          </p>
+          <p>
+            <ion-badge item-right>Play</ion-badge>
+            <ion-badge item-right>{{playCount}}</ion-badge>
+          </p>
+
+        </ion-list>
     </div>
-    <button fab fab-bottom fab-right  (click)="addTask()">
-      <ion-icon name="add"></ion-icon>
+    <button fab fab-bottom fab-right (click)="addTask()">
+        <ion-icon name="add"></ion-icon>
     </button>
 
 </ion-content>
