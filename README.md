@@ -3,6 +3,11 @@ A simple task manager built for android using Ionic v.2.
 
 [Download](https://drive.google.com/open?id=0B6OqcTb_THP_RlcwOVVfaTNxWHc)
 
+## Built with
+  - Ionic v.2
+  - TypeScript
+  - Cordova SQLite
+
 
 ## Preview
 
@@ -12,8 +17,5 @@ A simple task manager built for android using Ionic v.2.
 
 ![](https://raw.githubusercontent.com/abrarShariar/Task-Bytes/master/screen-3.PNG)
 
-## Built with
-  - Ionic v.2
-  - TypeScript
-  - Cordova SQLite
+
   
